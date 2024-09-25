@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CALCULATOR</title>
     <style>
+        input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
         body{
             display: flex;
             flex-direction: column;
@@ -40,7 +44,7 @@
         button:hover{
             cursor: pointer;
         }
-        @media (max-width: 417px){
+        @media (max-width: 767px){
             #n1,#op,#n2,button{
             height: 40px;
             width: 300px;
