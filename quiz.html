@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body{
+            display:flex ;
+            flex-direction: column;
+            align-items: center;
+        }
+        #options{
+            display:flex ;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+        button{
+            width: 500px;
+            margin: 15px;
+            height: 50px;
+            transition: opacity 0.15s;
+        }
+       button:hover{
+        cursor: pointer;
+        opacity: 0.8;
+       }
+       
+
+    </style>
+</head>
+<body>
+    <h2>QUIZ</h2>
+    <div id="question">question</div>
+    <div id="options">
+        <button id="btn-1">option 1</button>
+        <button id="btn-2">option 2</button>
+        <button id="btn-3">option 3</button>
+        <button id="btn-4">option 4</button>
+    </div>
+    <button id="nextbtn" style="width: 150px;">Next</button>
+    <script>
+        var score=0;
+        var curr=0;
+        let question=document.getElementById("question");
+        let btn=document.getElementById("options");
+        let next=document.getElementById("nextbtn");
+        const questions=[
+
+            {
+            q:"' ? ' is a ______ operator.",
+            opt:{
+                1:"Assignment",
+                2:"Logical",
+                3:"Arithmetic",
+                4:"Ternary"
+            },
+                answer: "4"
+            }, 
+            {
+                q:"What is the capital of France?",
+                opt:{
+                    1:"Belgium",
+                    2:"Paris",
+                    3:"Bordeaux",
+                    4:"None of the above"
+                }, 
+                answer:"2"
+            },
+            {
+                q:"How many bones are in the adult human body?",
+                opt:{
+                    1:"202",
+                    2:"206",
+                    3:"207",
+                    4:"208"
+                },
+            }
+        ]
+        function start_ed(){
+            let nowq=questions[curr]
+            let quesno=curr + 1;
+            question.innerHTML= "Question " + quesno + "." + " " + nowq.q;
+            nowq.answer.foreach(answer =>{
+                const button=document.createElement("button");
+                button.i
+            })
+        }
+start_ed()
+    </script>
+</body>
+</html>

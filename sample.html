@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+     <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    width: calc(100% - 100px);
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4cae4c;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+li button {
+    background: #d9534f;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+li button:hover {
+    background: #c9302c;
+}
+
+     </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="task-input" placeholder="Add a new task...">
+        <button id="add-task">Add Task</button>
+        <ul id="task-list"></ul>
+    </div>
+    <!-- <script src="script.js"></script> -->
+     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const taskInput = document.getElementById('task-input');
+    const taskList = document.getElementById('task-list');
+    const addTaskButton = document.getElementById('add-task');
+
+    // Load tasks from localStorage
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(task => addTaskToDOM(task));
+
+    addTaskButton.addEventListener('click', () => {
+        const taskText = taskInput.value.trim();
+
+        if (taskText !== '') {
+            addTaskToDOM(taskText);
+            tasks.push(taskText);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            taskInput.value = ''; // Clear input field
+        }
+    });
+
+    function addTaskToDOM(taskText) {
+        const li = document.createElement('li');
+        li.textContent = taskText;
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', () => {
+            li.remove();
+            removeTaskFromStorage(taskText);
+        });
+
+        li.appendChild(removeButton);
+        taskList.appendChild(li);
+    }
+
+    function removeTaskFromStorage(taskText) {
+        const updatedTasks = tasks.filter(task => task !== taskText);
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    }
+});
+
+     </script>
+</body>
+</html>
