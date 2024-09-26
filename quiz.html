@@ -34,18 +34,17 @@
     <h2>QUIZ</h2>
     <div id="question">question</div>
     <div id="options">
-        <button id="btn-1">option 1</button>
-        <button id="btn-2">option 2</button>
-        <button id="btn-3">option 3</button>
-        <button id="btn-4">option 4</button>
+        <button id="btn-1" onclick="selectedans(1)">option 1</button>
+        <button id="btn-2" onclick="selectedans(2)">option 2</button>
+        <button id="btn-3" onclick="selectedans(3)">option 3</button>
+        <button id="btn-4" onclick="selectedans(4)">option 4</button>
     </div>
-    <button id="nextbtn" style="width: 150px;">Next</button>
+    <button id="nextbtn" style="width: 150px;" onclick="nextquestion()">Next</button>
     <script>
-        var score=0;
-        var curr=0;
-        let question=document.getElementById("question");
-        let btn=document.getElementById("options");
-        let next=document.getElementById("nextbtn");
+        var score=0;  //keeps track of the score
+        var curr=0;   //curr stores the index of the current question
+        var question=document.getElementById("question");
+        var next=document.getElementById("nextbtn");
         const questions=[
 
             {
@@ -56,7 +55,7 @@
                 3:"Arithmetic",
                 4:"Ternary"
             },
-                answer: "4"
+                answer: 4
             }, 
             {
                 q:"What is the capital of France?",
@@ -66,7 +65,7 @@
                     3:"Bordeaux",
                     4:"None of the above"
                 }, 
-                answer:"2"
+                answer:2
             },
             {
                 q:"How many bones are in the adult human body?",
@@ -76,18 +75,56 @@
                     3:"207",
                     4:"208"
                 },
+                answer:2
+            },
+            {
+                q:"Which planet is known as the red planet?",
+                opt:{
+                    1:"Mercury",
+                    2:"Venus",
+                    3:"Mars",
+                    4:"Jupiter"
+                },
+                answer:3
+            },
+            {
+                q:"What is the largest mammal in the world?",
+                opt:{
+                    1:"Megalodon",
+                    2:"Oceanic whitetip shark",
+                    3:"Humpback whale",
+                    4:"Blue whale"
+                },
+                answer:4
             }
         ]
-        function start_ed(){
-            let nowq=questions[curr]
-            let quesno=curr + 1;
-            question.innerHTML= "Question " + quesno + "." + " " + nowq.q;
-            nowq.answer.foreach(answer =>{
-                const button=document.createElement("button");
-                button.i
-            })
+        function start(){
+            var nowq=questions[curr]  //nowq stores the entire current question
+            var quesno=curr + 1;      //quesno stores the question number
+            question.innerHTML= "Question " + quesno + ":" + " " + nowq.q;
+            
+            for (i=1; i<=4;i++){
+                var btn=document.getElementById("btn-" + i);
+                btn.innerHTML=nowq.opt[i];
+
+            }
+            }
+
+        function selectedans(selectedbtn){
+            if (selectedbtn==questions[curr].answer){
+                score++;
+            }
         }
-start_ed()
+        function nextquestion(){
+            if(curr<questions.length){
+                curr++;
+                start()
+            }
+            else{
+                question.innerHTML="QUIZ OVER! SCORE" + " " + ":" + " " + score + "/" + questions.length;
+            }
+        }
+start()
     </script>
 </body>
 </html>
