@@ -5,14 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO-DO LIST</title>
     <style>
-        ul{
-            color: rgb(203, 203, 203);
-            /* list-style: none; */
+
+    
+        #td{
+            /* display: flex;
+           /* flex-direction: column;
+            justify-content: center;
+            align-items: center; */
+            /* border: 2px solid white; */
+            border-radius: 12px;
+            /* width: 500px; */
+            margin-left: auto;
+            margin-right: auto;
+            /* background-color: white; */
+            /* backdrop-filter: blur; */
         }
+        ul{
+            /* display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center; */
+            color: rgb(203, 203, 203);
+            list-style: none;
+        }
+        
     </style>
 </head>
 
-<body style="background-color:rgb(46, 46, 46)" >
+<body style="background-color: rgb(41, 41, 41);">
     <div id="td">
         <h1 style="color: rgb(203, 203, 203);"> TO-DO LIST</h1>
         <input type="text" id="taskinput" placeholder="Add items to your to-do list.">
@@ -21,6 +41,7 @@
         <ul id="tasklist">
         
         </ul>
+
     </div>
 <script>
     let td=JSON.parse(localStorage.getItem("TASK")) || [];
@@ -36,10 +57,39 @@
             td.push(valtask);
             localStorage.setItem("TASK", JSON.stringify(td));
             taskinput.value = '';
+            display()
         }
         
 
     })
+    function display() {
+            tasklist.innerHTML = ''; //clears the list
+            td.forEach((task, index) => {
+                var li = document.createElement('li'); //creates new list
+                li.textContent = task; //sets the task as the list content
+                tasklist.appendChild(li); //appends task to the list
+
+                var delBtn = document.createElement('button');
+                delBtn.innerHTML = '&#10005;'; //html entity for a cross symbol
+                li.appendChild(delBtn); //appends the cross symbol to the task
+
+                delBtn.addEventListener('click', function() {
+                    td.splice(index, 1); //deletes the task from the list
+                    localStorage.setItem("TASK", JSON.stringify(td)); //updates the list in local storage
+                    display(); //displays the updated list
+                });
+                li.addEventListener('click', function() {
+                    li.style.textDecoration = "line-through"; 
+                });
+            });
+        }
+
+        display();
+    display()
+    function deltask(){
+        
+    }
+
 </script>
 </body>
 </html>
