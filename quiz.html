@@ -10,6 +10,11 @@
             flex-direction: column;
             align-items: center;
         }
+        .chosen{
+            background-color: rgb(58, 58, 58);
+            color: rgb(205, 205, 205);
+            border: 2px solid black;
+        }
         #options{
             display:flex ;
             flex-direction: column;
@@ -45,6 +50,7 @@
         var curr=0;   //curr stores the index of the current question
         var question=document.getElementById("question");
         var next=document.getElementById("nextbtn");
+        var selectedAnswer;
         const questions=[
 
             {
@@ -99,6 +105,9 @@
             }
         ]
         function start(){
+            for (let i = 1; i <= 4; i++) {
+        document.getElementById("btn-" + i).classList.remove("chosen");   //removes the highlighted dec
+    }
             var nowq=questions[curr]  //nowq stores the entire current question
             var quesno=curr + 1;      //quesno stores the question number
             question.innerHTML= "Question " + quesno + ":" + " " + nowq.q;
@@ -110,18 +119,32 @@
             }
             }
 
-        function selectedans(selectedbtn){
-            if (selectedbtn==questions[curr].answer){
-                score++;
-            }
-        }
+function selectedans(selectedbtn) {
+
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById("btn-" + i).classList.remove("chosen");
+    }
+
+    const selectedButton = document.getElementById("btn-" + selectedbtn);
+    selectedButton.classList.add("chosen");
+    selectedAnswer = selectedbtn;
+}
+
         function nextquestion(){
-            if(curr<questions.length){
+            if (typeof selectedAnswer !== 'undefined'){
+                if (selectedAnswer == questions[curr].answer) {
+                    score++;
+                }
+            }
+            if(curr<questions.length -1){
                 curr++;
-                start()
+                selectedAnswer = undefined;
+                start();
             }
             else{
                 question.innerText="QUIZ OVER! SCORE" + " " + ":" + " " + score + "/" + questions.length;
+                document.getElementById("options").style.display = 'none';
+                next.style.display = 'none';
             }
         }
 start()
