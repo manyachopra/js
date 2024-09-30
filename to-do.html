@@ -6,33 +6,97 @@
     <title>TO-DO LIST</title>
     <style>
 
-    
-        #td{
-            /* display: flex;
-           /* flex-direction: column;
+        body{
+            background: url(bg.jpeg);
+            /* background-repeat: no-repeat;
+            background-size: cover; */
+            display: flex;
             justify-content: center;
-            align-items: center; */
-            /* border: 2px solid white; */
-            border-radius: 12px;
-            /* width: 500px; */
+            align-items: center;
+            height: 500px;
+            
+        }
+        li{
+            display: flex;
+            justify-content: space-between;
+            color: rgb(203, 203, 203);
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        #td{
+            border: 2px solid rgb(203, 203, 203);
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            background-color: rgba(0, 0, 0, 0.4);
             margin-left: auto;
             margin-right: auto;
-            /* background-color: white; */
-            /* backdrop-filter: blur; */
         }
-        ul{
-            /* display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center; */
+        input{
+            border: 1px solid rgb(203, 203, 203);
+            border-radius: 20px;
+            padding: 12px;
+            background-color: rgb(46, 46, 46);
             color: rgb(203, 203, 203);
-            list-style: none;
+            font-size: 15px;
         }
-        
+        input::placeholder{
+            color: rgb(203, 203, 203);
+            font-size: 15px;
+        }
+        #addtaskbtn{
+            border: 1px solid rgb(203, 203, 203);
+            border-radius: 22px;
+            padding: 12px;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: rgb(203, 203, 203);
+            margin-left: 5px;
+        }
+        button{
+            border: 1px solid rgb(203, 203, 203);
+            border-radius: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: rgb(46, 46, 46);
+            transition: opacity 0.15s;
+            color: rgb(203, 203, 203);
+        }
+        button:hover{
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        @media(max-width:375px){
+            input{
+            border: 1px solid rgb(203, 203, 203);
+            border-radius: 18px;
+            padding: 12px;
+            background-color: rgb(46, 46, 46);
+            color: rgb(203, 203, 203);
+            font-size: 10px;
+        }
+        input::placeholder{
+            color: rgb(203, 203, 203);
+            font-size: 10px;
+        }
+            #addtaskbtn{
+            border: 1px solid rgb(203, 203, 203);
+            border-radius: 22px;
+            padding: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: rgb(203, 203, 203);
+            margin-left: 10px;
+            font-size: 10px
+
+        }
+    }
+       
+    
     </style>
 </head>
 
-<body style="background-color: rgb(41, 41, 41);">
+<body>
     <div id="td">
         <h1 style="color: rgb(203, 203, 203);"> TO-DO LIST</h1>
         <input type="text" id="taskinput" placeholder="Add items to your to-do list.">
@@ -68,6 +132,7 @@
                 var li = document.createElement('li'); //creates new list
                 li.textContent = task; //sets the task as the list content
                 tasklist.appendChild(li); //appends task to the list
+                
 
                 var delBtn = document.createElement('button');
                 delBtn.innerHTML = '&#10005;'; //html entity for a cross symbol
