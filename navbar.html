@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav bar</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: opacity 0.15s;
+        }
+        a:hover{
+            opacity: 0.7;
+        }
+        .navbar{
+            padding: 25px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .items{
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+        }
+        .menu {
+            display: none; 
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .line {
+            width: 30px;
+            height: 2px;
+            background: white;
+            margin: 4px;
+        }
+        @media (max-width:768px) {
+            .items{
+                display: none; 
+                position: absolute; 
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: rgb(45, 45, 45);
+                align-items: center;
+            }
+            .item-4{
+                margin-bottom: 20px;
+            }
+            .menu{
+                display: flex;
+            }
+            .nbactive {
+                display: flex; 
+                flex-direction: column;
+
+            }
+            
+        }
+
+        
+    </style>
+</head>
+<body style="background-color: rgb(61, 61, 61);">
+        <nav class="navbar" id="navbar" style="background-color:rgb(45, 45, 45);">
+            <a href="#" class="logo">LOGO</a>
+            
+            <div>
+                <ul class="items" id="items">
+                    <li class="item-1"><a href="#">Home</a></li>
+                    <li class="item-2"><a href="#">About</a></li>
+                    <li class="item-3"><a href="#">Contact</a></li>
+                    <li class="item-4"><a href="#">Logout</a></li>
+                </ul>
+                <div id="menu" class="menu">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </nav>
+<script>
+    const menu=document.getElementById("menu")
+    const items=document.getElementById("items")
+    menu.addEventListener('click', () => {
+                items.classList.toggle('nbactive');
+                menu.classList.toggle('active');
+    })
+</script>
+</body>
+</html>
